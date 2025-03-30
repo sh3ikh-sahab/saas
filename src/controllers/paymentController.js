@@ -2,13 +2,13 @@ import { createPayment, getUserPayments, updatePaymentStatus } from "../services
 
 export const processPayment = async (req, res) => {
   try {
-    const { amount, transactionId } = req.body;
+    const { packageId, amount, paymentMethod, transactionId } = req.body;
     const userId = req.user.id; // Assuming user is authenticated
 
-    const payment = await createPayment(userId, amount, transactionId);
-    res.status(201).json({ message: "Payment created", payment });
+    const payment = await createPayment(userId, packageId, amount, paymentMethod, transactionId);
+    res.status(201).json({ message: "Payment request created", payment });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Failed to create payment request" });
   }
 };
 
@@ -18,7 +18,7 @@ export const fetchPayments = async (req, res) => {
     const payments = await getUserPayments(userId);
     res.status(200).json(payments);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Failed to fetch payments" });
   }
 };
 
@@ -28,6 +28,6 @@ export const updatePayment = async (req, res) => {
     await updatePaymentStatus(transactionId, status);
     res.status(200).json({ message: "Payment status updated" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Failed to update payment status" });
   }
 };

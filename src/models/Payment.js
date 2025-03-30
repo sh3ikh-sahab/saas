@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
-import User from "./User.js"; // Assuming a user makes a payment
+import User from "./User.js";
+import Package from "./Package.js";
 
 const Payment = sequelize.define("Payment", {
   id: {
@@ -16,8 +17,20 @@ const Payment = sequelize.define("Payment", {
       key: "id",
     },
   },
+  packageId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: Package,
+      key: "id",
+    },
+  },
   amount: {
     type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  paymentMethod: {
+    type: DataTypes.ENUM("Bank", "Easypaisa", "JazzCash"),
     allowNull: false,
   },
   status: {
@@ -31,7 +44,11 @@ const Payment = sequelize.define("Payment", {
   },
 });
 
+// Associations
 User.hasMany(Payment, { foreignKey: "userId" });
 Payment.belongsTo(User, { foreignKey: "userId" });
+
+Package.hasMany(Payment, { foreignKey: "packageId" });
+Payment.belongsTo(Package, { foreignKey: "packageId" });
 
 export default Payment;

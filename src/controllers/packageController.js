@@ -2,8 +2,8 @@ import { createPackage, getAllPackages, getPackageById } from "../services/packa
 
 export const createNewPackage = async (req, res) => {
   try {
-    const { name, price, description } = req.body;
-    const newPackage = await createPackage(name, price, description);
+    const { name, price, description, features, billing, popular } = req.body;
+    const newPackage = await createPackage(name, price, description, features, billing, popular);
     res.status(201).json({ message: "Package created successfully", package: newPackage });
   } catch (error) {
     res.status(500).json({ error: "Failed to create package" });

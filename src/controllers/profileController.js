@@ -20,7 +20,12 @@ export const register = async (req, res) => {
       companyName: null, // No company association initially
     });
 
-    res.status(201).json({ message: "User registered successfully.", user });
+    // Generate a JWT token
+    const token = jwt.sign({ userId: user.id, name: user.name, role: user.role }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    res.status(201).json({ message: "User registered successfully.", user, token });
   } catch (error) {
     console.error("Registration Error:", error);
     res.status(500).json({ error: "Registration failed." });

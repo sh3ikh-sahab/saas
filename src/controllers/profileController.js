@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import { getUserById, updateUserProfile } from "../services/userService.js";
+import { getUserById, updateUserProfile } from "../services/profileService.js";
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;

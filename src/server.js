@@ -16,6 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Parses x-www-form-urlencoded
 app.use("/api", apiRoutes);
 
+app.get("/", (req, res) => { 
+  res.status(200).json({message: "Hello World from baceknd" }); 
+});
+
 io.on("connection", (socket) => {
   console.log("A user connected");
   socket.on("disconnect", () => console.log("User disconnected"));

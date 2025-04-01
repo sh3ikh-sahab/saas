@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "main": "src/server.js",
-  "engines": {
-    
-  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",

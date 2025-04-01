@@ -18,6 +18,19 @@ const Package = sequelize.define("Package", {
   description: {
     type: DataTypes.TEXT,
   },
+  features: {
+    type: DataTypes.JSON, // Array of features
+    defaultValue: [],
+  },
+  billing: {
+    type: DataTypes.STRING, // "monthly", "yearly", etc.
+    allowNull: false,
+    defaultValue: "monthly",
+  },
+  popular: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  }
 });
 
 export default Package;

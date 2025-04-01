@@ -26,6 +26,26 @@ const Company = sequelize.define('Company', {
     type: DataTypes.UUID,
     allowNull: false,
   },
+  website: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  }
 }, {
   timestamps: true,
 });

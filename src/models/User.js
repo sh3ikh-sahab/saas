@@ -48,22 +48,6 @@ const User = sequelize.define(
       type: DataTypes.STRING, // Store image URL
       allowNull: true,
     },
-    skills: {
-      type: DataTypes.JSON, // Example: ["JavaScript", "React", "Node.js"]
-      allowNull: true,
-    },
-    education: {
-      type: DataTypes.JSON, // Example: [{ degree: "BSc", field: "CS", year: "2022" }]
-      allowNull: true,
-    },
-    experience: {
-      type: DataTypes.JSON, // Example: [{ company: "ABC", role: "Dev", years: 2 }]
-      allowNull: true,
-    },
-    certifications: {
-      type: DataTypes.JSON, // Example: [{ name: "AWS Certified", year: "2023" }]
-      allowNull: true,
-    },
   },
   {
     timestamps: true,

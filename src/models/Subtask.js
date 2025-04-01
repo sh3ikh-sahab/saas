@@ -1,26 +1,26 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
-import User from './User.js';
+import Task from './Task.js';
 
-const Skill = sequelize.define('Skill', {
+const Subtask = sequelize.define('Subtask', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  name: {
+  title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  level: {
-    type: DataTypes.ENUM('Beginner', 'Intermediate', 'Advanced', 'Expert'),
-    defaultValue: 'Beginner',
+  completed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
-  userId: {
+  taskId: {
     type: DataTypes.UUID,
     allowNull: false,
     references: {
-      model: User,
+      model: Task,
       key: 'id',
     },
   },
@@ -28,7 +28,7 @@ const Skill = sequelize.define('Skill', {
   timestamps: true,
 });
 
-Skill.belongsTo(User, { foreignKey: 'userId' });
-User.hasMany(Skill, { foreignKey: 'userId' });
+Subtask.belongsTo(Task, { foreignKey: 'taskId' });
+Task.hasMany(Subtask, { foreignKey: 'taskId' });
 
-export default Skill;
+export default Subtask;

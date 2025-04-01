@@ -1,6 +1,6 @@
 import express from "express";
 import { createNewPackage, fetchAllPackages } from "../controllers/packageController.js";
-import authenticate from "../middlewares/authenticate.js";
+import {authenticate} from "../middleware/authenticate.js";
 
 const router = express.Router();
 
